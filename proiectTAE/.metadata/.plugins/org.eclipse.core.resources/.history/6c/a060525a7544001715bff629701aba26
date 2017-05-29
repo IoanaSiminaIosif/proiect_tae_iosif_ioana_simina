@@ -1,0 +1,60 @@
+body {
+	font-family: sans-serif;
+}
+
+.inputErrors {
+	background-color: red;
+}
+
+.buttonSubmit {
+	text-align: center;
+	color: red;
+}
+
+.form2 {
+	width: 300px;
+	margin: 0 auto;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #617067;
+}
+
+li {
+    float: left;
+    text-align: center;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 5px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #2ad6ae;
+}
+
+.btn {
+   background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.btn:hover {
+  background: #fc3c63;
+  text-decoration: none;
+}

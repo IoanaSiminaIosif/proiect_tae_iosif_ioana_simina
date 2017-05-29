@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+
+</head>
+<body>
+	<nav th:replace="fragments :: navigation"></nav>
+	<h1 th:replace="fragments :: titlu"></h1>
+
+	<form method="post" style="max-width: 600px;">
+		<div  th:each="chestie : ${chestii}">
+			<input type="checkbox" name="chestiiIDs" th:value="${chestie.id}"
+				th:id="${chestie.id}" />
+			 <label for="${chestie.id}"	th:text="${chestie.nume}"></label> 
+			 <br/>
+		</div>
+		<input type="submit" value="Remove" class="btn" />
+	</form>
+</body>
+</html> 

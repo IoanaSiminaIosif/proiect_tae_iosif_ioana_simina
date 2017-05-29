@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+
+</head>
+<body>
+	<nav th:replace="fragments :: navigation"></nav>
+
+	<form  method="post" style="max-width: 600px;" th:object="${deEditat}">
+	
+		<div class="form-group">
+			<label th:for="nume">Nume</label>
+			<input class="form-control" th:field="*{nume}" /> 
+			<span th:errors="*{nume}" class="inputErrors"></span>
+		</div>
+		<div class="form-group">
+			<label for="varsta">Varsta</label>
+			<input class="form-control" th:field="*{varsta}" />
+			<span th:errors="*{varsta}" class="inputErrors"></span>
+		</div>	
+		<div class="form-group">
+			<label th:for="grupa">Grupa sanguina</label> 
+			<select class="form-control" th:field="*{grupa}">
+			   <option th:each="grupa : ${T(com.example.myproject.model.GrupaSange).values()}"
+			          th:value="${grupa}"
+			          th:text="${grupa.name}" >
+			   </option>
+			</select>
+			<span th:errors="*{grupa}" class="inputErrors"></span>
+		</div>	
+			<label th:for="sex">Sex</label><br/>
+			<input type="radio" th:field="*{sex}" value="MASCULIN"/>MASCULIN <br/>
+  			<input type="radio" th:field="*{sex}" value="FEMININ"/>FEMININ<br/>
+  			<span th:errors="*{sex}" class="inputErrors"></span>
+  			
+		<div class="form-group">	
+			<label th:for="numarTel">Numar de telefon</label> 
+			<input class="form-control" th:field="*{numarTelefon}" /> 
+		</div>
+		<div class="form-group">	
+			<label th:for="adresa">Adresa</label>
+			<input class="form-control" th:field="*{adresa}" />
+		</div>
+		<input type="submit" value="Add" />
+		</form>
+</body>
+</html> 

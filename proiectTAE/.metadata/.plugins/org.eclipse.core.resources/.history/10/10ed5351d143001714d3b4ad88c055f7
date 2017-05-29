@@ -1,0 +1,14 @@
+package com.example.myproject.model.data;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.myproject.model.Donator;
+
+
+@Repository
+public interface DonatorDao  extends CrudRepository<Donator	, Integer>{
+
+	
+	
+}

@@ -1,0 +1,69 @@
+body {
+	font-family: sans-serif;
+}
+
+.inputErrors {
+	background-color: red;
+}
+
+.buttonSubmit {
+	text-align: center;
+	color: red;
+}
+
+.form2 {
+	width: 300px;
+	margin: 0 auto;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #617067;
+}
+
+li {
+    float: left;
+    text-align: center;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 5px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #2ad6ae;
+}
+
+.btn {
+  background: #d9344f;
+  background-image: -webkit-linear-gradient(top, #d9344f, #b82b2b);
+  background-image: -moz-linear-gradient(top, #d9344f, #b82b2b);
+  background-image: -ms-linear-gradient(top, #d9344f, #b82b2b);
+  background-image: -o-linear-gradient(top, #d9344f, #b82b2b);
+  background-image: linear-gradient(to bottom, #d9344f, #b82b2b);
+  -webkit-border-radius: 14;
+  -moz-border-radius: 14;
+  border-radius: 14px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #fc3c63;
+  background-image: -webkit-linear-gradient(top, #fc3c63, #d9348c);
+  background-image: -moz-linear-gradient(top, #fc3c63, #d9348c);
+  background-image: -ms-linear-gradient(top, #fc3c63, #d9348c);
+  background-image: -o-linear-gradient(top, #fc3c63, #d9348c);
+  background-image: linear-gradient(to bottom, #fc3c63, #d9348c);
+  text-decoration: none;
+}

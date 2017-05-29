@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+
+</head>
+<body class="container">
+	<nav th:replace="fragments :: navigation"></nav>
+	<h1 th:replace="fragments :: titlu"></h1>
+	<div  th:each="centru : ${centre}">
+			<input type="checkbox" name="chestiiIDs" th:value="${chestie.id}"
+				th:id="${centre.id}" />
+			 <label for="${centre.id}"	th:text="${centre.nume}"></label> 
+			 <br/>
+		</div>
+	<table class="table" id="mytable">
+		<tr>
+			<th>Nume</th>
+			<th>Varsta</th>
+			<th>Grupa sanguina</th>
+			<th>Sex</th>
+			<th>Telefon</th>
+			<th>Adresa</th>
+		</tr>
+		<tr th:each="chestie : ${lista}">
+			<td th:text="${chestie.nume}"></td>
+			<td th:text="${chestie.varsta}"></td>
+			<td th:text="${chestie.grupa}"></td>
+			<td th:text="${chestie.sex}"></td>
+			<td th:text="${chestie.numarTelefon}"></td>
+			<td th:text="${chestie.adresa}"></td>
+		</tr>
+	</table>
+</body>
+</html>

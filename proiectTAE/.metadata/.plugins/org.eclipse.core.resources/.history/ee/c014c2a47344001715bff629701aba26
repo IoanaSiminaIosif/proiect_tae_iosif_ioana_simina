@@ -1,0 +1,158 @@
+package com.example.myproject.controller;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
+
+import javax.validation.Valid;
+
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.ParseException;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.myproject.model.CentruDonare;
+import com.example.myproject.model.Donator;
+import com.example.myproject.model.data.DonatorDao;
+
+import net.minidev.json.JSONArray;
+import net.minidev.json.parser.JSONParser;
+
+/**
+ * 
+ * @author Simina Iosif
+ *
+ */
+
+@Controller
+@RequestMapping("simi")
+public class MyController {
+	
+	
+
+	@Autowired
+	private DonatorDao donatorDao;
+
+	@RequestMapping(value = "")
+	public String index(Model model) throws Exception {
+		model.addAttribute("lista", donatorDao.findAll());
+		model.addAttribute("centre", readJson());
+
+		model.addAttribute("title", "Banca de sange");
+		return "mytem/index";
+	}
+
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public String displayAddForm(Model model) {
+		model.addAttribute("title", "Adauga un nou candidat");
+		model.addAttribute(new Donator());
+		return "mytem/add";
+	}
+
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public String processAdd(@Valid @ModelAttribute("donator") Donator donator, Errors errors, Model model) {
+
+		if (errors.hasErrors()) {
+			model.addAttribute("", "");
+			return "mytem/add";
+		}
+
+		if (donator.getVarsta() < 18) {
+			model.addAttribute("mesaj", "Din nefericire nu sunteti un candidat viabil. ");
+		} else {
+			model.addAttribute("mesaj", "Sunteti un candidat viabil. ");
+			donatorDao.save(donator);
+		}
+		return "mytem/add";
+	}
+	
+	
+
+	@RequestMapping(value = "edit", method = RequestMethod.GET)
+	public String displayEditForm(Model model) {
+		model.addAttribute("chestii", donatorDao.findAll());
+		model.addAttribute("title", "Edit");
+		model.addAttribute(new Donator());
+		return "mytem/edit";
+	}
+
+	@RequestMapping(value = "edit", method = RequestMethod.POST)
+	public String processEditForm(@Valid @ModelAttribute("donator") Donator donator, Errors errors, Model model, @RequestParam int[] chestiiIDs) {
+		Donator deEditat = new Donator();
+		for (int i = 0; i < chestiiIDs.length; i++) {
+			deEditat = donatorDao.findOne(chestiiIDs[i]);
+		}
+		
+		if(donator.getNume() != null)
+			deEditat.setNume(donator.getNume());
+		if(donator.getVarsta() > 0)
+			deEditat.setVarsta(donator.getVarsta());
+		if(donator.getNume() != null)
+			deEditat.setAdresa(donator.getAdresa());
+		if(donator.getNumarTelefon()!= null)
+			deEditat.setNumarTelefon(donator.getNumarTelefon());
+
+		donatorDao.save(deEditat);
+		return "redirect:";
+	}
+	
+	@RequestMapping(value = "remove", method = RequestMethod.GET)
+	public String displayRemoveForm(Model model) {
+		model.addAttribute("chestii", donatorDao.findAll());
+		model.addAttribute("title", "Remove");
+
+		return "mytem/remove";
+	}
+
+	@RequestMapping(value = "remove", method = RequestMethod.POST)
+	public String processRemoveForm(@RequestParam int[] chestiiIDs) {
+
+		for (int i = 0; i < chestiiIDs.length; i++) {
+			donatorDao.delete(chestiiIDs[i]);
+		}
+
+		return "redirect:";
+	}
+	
+	
+
+	private java.util.List<CentruDonare> readJson() throws Exception {
+		   JSONParser parser = new JSONParser();
+		   java.util.List<CentruDonare> centreDonareJSon= new ArrayList<>();
+	        try {         
+	            URL oracle = new URL("http://localhost:8383/centre/all"); // URL to Parse
+	            URLConnection yc = oracle.openConnection();
+	            BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+	            
+	            String inputLine;
+	            while ((inputLine = in.readLine()) != null) {               
+	                JSONObject a = (JSONObject) parser.parse(inputLine);
+	                
+
+	                    int id =  (int) a.get("id");
+
+	                    String adresa = (String) a.get("adresa");
+	                    CentruDonare cd= new CentruDonare(id, adresa);
+	                    centreDonareJSon.add(cd);
+	            }
+	            in.close();
+	        } catch (FileNotFoundException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        } catch (ParseException e) {
+	            e.printStackTrace();
+	        }   
+	        return centreDonareJSon;
+	    }   
+}

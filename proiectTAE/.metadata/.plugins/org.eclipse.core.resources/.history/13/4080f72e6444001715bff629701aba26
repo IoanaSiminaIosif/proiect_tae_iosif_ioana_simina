@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+
+</head>
+<body>
+	<nav th:replace="fragments :: navigation"></nav>
+
+	<form method="post" style="max-width: 600px;">
+		<div  th:each="chestie : ${chestii}" th:object="${donator}">
+			<input type="radio" name="chestiiIDs" th:value="${chestie.id}" th:id="${chestie.id}" />
+			<label for="${chestie.id}" th:text="${'Nume: '+ chestie.nume + '         Varsta: ' + 
+			chestie.varsta+ '         Adresa: ' +chestie.adresa + '         Telefon: ' +chestie.numarTelefon}"	></label> 
+			<br/>
+		
+			<label th:for="${chestie.nume}"  ></label>
+			<input th:value="${chestie.nume}"  th:field="*{nume}" /> 
+			
+			<label for="${chestie.varsta}"></label>
+			<input th:value="${chestie.varsta}" th:field="*{varsta}" /> 
+			
+			<label for="${chestie.adresa}"></label>
+			<input th:value="${chestie.adresa}" th:field="*{adresa}" /> 
+			
+			<label for="${chestie.numarTelefon"></label>
+			<input th:value="${chestie.numarTelefon}" th:field="*{numarTelefon}" /> 
+		</div>
+		<input type="submit" value="Update" />
+	</form>
+</body>
+</html> 

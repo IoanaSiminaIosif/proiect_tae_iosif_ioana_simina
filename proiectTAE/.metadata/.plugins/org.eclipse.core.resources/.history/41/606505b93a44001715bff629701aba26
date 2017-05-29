@@ -1,0 +1,101 @@
+package com.example.myproject.model;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Entity;
+
+/**
+ * 
+ * @author Simina Iosif
+ *
+ */
+@javax.persistence.Entity
+public class Donator {
+
+	@Id
+	@GeneratedValue
+	private int id;
+
+	@NotNull
+	@Size(min = 3, max = 50, message = "Numele trebuie sa contina mainim 3 caractere!")
+	private String nume;
+
+	@NotNull
+	@Max(value = 100, message = "Varsta nu poate fi mai mare de 100 de ani.")
+	private int varsta;
+	private GrupaSange grupa;
+	private Sex sex;
+	private String numarTelefon;
+	private String adresa;
+
+	public Donator() {
+	}
+
+	public Donator(String nume, int varsta, GrupaSange grupa, Sex sex, String numarTelefon, String adresa) {
+		super();
+		this.nume = nume;
+		this.varsta = varsta;
+		this.grupa = grupa;
+		this.sex = sex;
+		this.numarTelefon = numarTelefon;
+		this.adresa = adresa;
+	}
+
+	public String getNume() {
+		return nume;
+	}
+
+	public void setNume(String nume) {
+		this.nume = nume;
+	}
+
+	public int getVarsta() {
+		return varsta;
+	}
+
+	public void setVarsta(int varsta) {
+		this.varsta = varsta;
+	}
+
+	public GrupaSange getGrupa() {
+		return grupa;
+	}
+
+	public void setGrupa(GrupaSange grupa) {
+		this.grupa = grupa;
+	}
+
+	public Sex getSex() {
+		return sex;
+	}
+
+	public void setSex(Sex sex) {
+		this.sex = sex;
+	}
+
+	public String getNumarTelefon() {
+		return numarTelefon;
+	}
+
+	public void setNumarTelefon(String numarTelefon) {
+		this.numarTelefon = numarTelefon;
+	}
+
+	public String getAdresa() {
+		return adresa;
+	}
+
+	public void setAdresa(String adresa) {
+		this.adresa = adresa;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+}

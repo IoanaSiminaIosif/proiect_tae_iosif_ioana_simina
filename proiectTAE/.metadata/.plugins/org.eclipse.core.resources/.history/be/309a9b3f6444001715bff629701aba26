@@ -1,0 +1,47 @@
+body {
+	font-family: sans-serif;
+}
+
+.inputErrors {
+	background-color: red;
+}
+
+.buttonSubmit {
+	text-align: center;
+	color: red;
+}
+
+.form2 {
+	width: 300px;
+	margin: 0 auto;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #617067;
+}
+
+li {
+    float: left;
+    text-align: center;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 5px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #2ad6ae;
+}
+
+.editForm input{
+  float:left;
+}
+}

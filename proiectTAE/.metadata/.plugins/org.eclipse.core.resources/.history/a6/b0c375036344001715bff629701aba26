@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+
+</head>
+<body>
+	<nav th:replace="fragments :: navigation"></nav>
+
+	<form method="post" style="max-width: 600px;">
+		<div  th:each="chestie : ${chestii}" th:object="${donator}">
+			<input type="radio" name="chestiiIDs" th:value="${chestie.id}" th:id="${chestie.id}" />
+			<label for="${chestie.id}" th:text="${chestie.nume + '!' + chestie.varsta}"	></label> 
+			<br/>
+		
+			<label th:for="${chestie.nume}"  ></label>
+			<input th:value="${chestie.nume}"  th:field="*{nume}" /> 
+ 			<span th:errors="*{nume}" class="inputErrors"></span>
+			
+			<label for="${chestie.varsta"></label>
+			<input th:value="${chestie.varsta}" th:field="*{varsta}" /> 
+			<!-- <span th:errors="*{varsta}" class="inputErrors"></span> -->
+		</div>
+		<input type="submit" value="Update" />
+	</form>
+</body>
+</html> 

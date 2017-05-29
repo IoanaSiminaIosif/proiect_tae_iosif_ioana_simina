@@ -1,0 +1,23 @@
+package com.example.myproject.model;
+
+public class CentruDonare {
+
+	private int id;
+	private String adresa;
+	
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	public void setAdresa(String adresa) {
+		this.adresa = adresa;
+	}
+	public int getId() {
+		return id;
+	}
+	public String getAdresa() {
+		return adresa;
+	}
+	
+	
+}

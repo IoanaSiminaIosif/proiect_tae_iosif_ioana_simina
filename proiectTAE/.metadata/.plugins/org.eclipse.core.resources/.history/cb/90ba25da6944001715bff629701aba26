@@ -1,0 +1,14 @@
+package come.example.myproject.service;
+
+import java.util.Hashtable;
+
+import com.example.myproject.model.CentruDonare;
+
+public class CentruDonareService {
+
+	Hashtable<String, CentruDonare> centre = new Hashtable<>();
+	
+	public public CentruDonareService() {
+		CentruDonare cd = new CentruDonare(1,"Bucuresti, sect 3");
+	}
+}
